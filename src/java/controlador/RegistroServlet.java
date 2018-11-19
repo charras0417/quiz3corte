@@ -118,13 +118,12 @@ public class RegistroServlet extends HttpServlet {
           
           String cedula = request.getParameter("cedula");
           String nombre = request.getParameter("nombre");
-          String apellido = request.getParameter("apellido");
           //Validaciones - SQL Inyection - Luego
-          if(nombre != null && apellido != null && nombre.length()>0){
+          if(nombre != null && nombre.length()>0){
               try {
-                  Persona persona =
-                          new Persona(Integer.parseInt(cedula), nombre, apellido);
-                  if(!this.dao.insert(persona)){
+                  Escuela escuela =
+                          new Escuela(Integer.parseInt(cedula), nombre);
+                  if(!this.dao.insert(escuela)){
                       response.sendRedirect("index.jsp?error=ErrorDatos");
                   }  
               } catch (SQLException ex) {
