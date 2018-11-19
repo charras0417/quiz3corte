@@ -23,7 +23,7 @@ public class EscuelaDAO implements IBaseDatos<Escuela>{
     
     public Escuela find(int codigo) throws SQLException{
        Escuela resultado = null;
-       String query="Select * from Persona Where codigo ="+ codigo;
+       String query="Select * from Escuela Where codigo ="+ codigo;
        Connection connection = Conexion.getConnection();
         try {
 	    Statement st = connection.createStatement();
@@ -120,15 +120,15 @@ public class EscuelaDAO implements IBaseDatos<Escuela>{
     }
 
     @Override
-    public boolean delete(Escuela persona) throws SQLException {
+    public boolean delete(Escuela escuela) throws SQLException {
         boolean result=false;
 	Connection connection = Conexion.getConnection();
 	String query = "delete from Escuela where codigo = ?";
-        System.out.println(query + " " + persona.getCodigo());
+        System.out.println(query + " " + escuela.getCodigo());
 	PreparedStatement preparedStmt=null;
 	 try {
 	    preparedStmt = connection.prepareStatement(query);
-	    preparedStmt.setInt(1, persona.getCodigo());
+	    preparedStmt.setInt(1, escuela.getCodigo());
 	    result= preparedStmt.execute();
 	} catch (SQLException e) {
 	  e.printStackTrace();
